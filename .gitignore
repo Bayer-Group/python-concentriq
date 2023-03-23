@@ -1,0 +1,16 @@
+__pycache__
+.coverage*
+.eggs/**
+.mypy_cache
+.pytest_cache
+build/**
+dist/**
+docs/build/**
+htmlcov/**
+*.egg-info/**
+venv/*
+
+**/tests/data
+concentriq/_version.py
+
+environment.yml

@@ -1,0 +1,53 @@
+[build-system]
+requires = [
+  "setuptools >= 42",
+  "wheel",
+  "setuptools_scm[toml]>=3.4",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "concentriq/_version.py"
+version_scheme = "post-release"
+
+[tool.pytest.ini_options]
+addopts = [
+  "-v",
+  # (only needed by windows) disable faulthandler plugin to suppress non-fatal error msgs
+  "-p", "no:faulthandler",
+]
+
+[tool.coverage.run]
+source = ["concentriq"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "raise NotImplementedError",
+  "if TYPE_CHECKING:",
+  "if MYPY:",
+]
+
+[tool.black]
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.mypy_cache
+    | \.venv
+    | venv.*
+    | build
+    | dist
+    | ci
+  )/
+)
+'''
+
+[tool.isort]
+profile = "black"
+py_version = "37"
+force_single_line = true
+extend_skip = ["setup.py"]
